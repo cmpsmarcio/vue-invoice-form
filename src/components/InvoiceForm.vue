@@ -21,7 +21,6 @@
           </table>
         </td>
       </tr>
-
       <tr class="information">
         <td colspan="4">
           <table>
@@ -41,12 +40,10 @@
           </table>
         </td>
       </tr>
-
       <tr class="heading">
         <td colspan="2">Payment Method</td>
         <td colspan="2">Check #</td>
       </tr>
-
       <tr class="details">
         <td colspan="2">Check</td>
         <td colspan="2">1000</td>
@@ -69,6 +66,11 @@
           <input type="number" v-model="item.quantity" />
         </td>
         <td>${{item.price * item.quantity | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <button class="btn-add-row" @click="addRow">Add Row</button>
+        </td>
       </tr>
       <tr class="total">
         <td colspan="2"></td>
