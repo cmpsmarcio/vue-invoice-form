@@ -51,34 +51,28 @@
         <td colspan="2">Check</td>
         <td colspan="2">1000</td>
       </tr>
-
       <tr class="heading">
         <td>Item</td>
-        <td>quantity</td>
+        <td>Quantity</td>
         <td>Price</td>
-        <td>total</td>
+        <td>Total</td>
       </tr>
-
       <tr class="item" v-for="item in items" :key="item.id">
         <td>
           <input v-model="item.description" />
         </td>
-
         <td>
           $
           <input type="number" v-model="item.price" />
         </td>
-
         <td>
           <input type="number" v-model="item.quantity" />
         </td>
-        <td>$ {{item.price * item.quantity | currency}}</td>
+        <td>${{item.price * item.quantity | currency}}</td>
       </tr>
-
       <tr class="total">
         <td colspan="2"></td>
-
-        <td colspan="2">Total: $385.00</td>
+        <td colspan="2">Total: ${{ total | currency}}</td>
       </tr>
     </table>
   </div>
@@ -89,7 +83,11 @@ export default {
   name: "InvoiceForm",
   data() {
     return {
-      items: [{ id: 1, description: "Website Design", quantity: 1, price: 300 }]
+      items: [
+        { id: 1, description: "Website Design", quantity: 1, price: 300 },
+        { id: 2, description: "Hosting", quantity: 3, price: 75 },
+        { id: 3, description: "Domain Name", quantity: 2, price: 10 }
+      ]
     };
   },
   computed: {
@@ -107,11 +105,11 @@ export default {
         quantity: 1,
         price: 0
       });
-    },
-    filters: {
-      currency(value) {
-        return value.toFixed(2);
-      }
+    }
+  },
+  filters: {
+    currency(value) {
+      return value.toFixed(2);
     }
   }
 };
@@ -172,6 +170,14 @@ export default {
 
 .invoice-box table tr.item td {
   border-bottom: 1px solid #eee;
+  line-height: 34px;
+}
+
+.invoice-box table tr.item td input {
+  height: 22px;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  padding: 5px;
 }
 
 .invoice-box table tr.item.last td {
