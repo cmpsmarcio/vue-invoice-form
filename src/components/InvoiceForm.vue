@@ -2,7 +2,7 @@
   <div class="invoice-box">
     <table cellpadding="0" cellspacing="0">
       <tr class="top">
-        <td colspan="2">
+        <td colspan="4">
           <table>
             <tr>
               <td class="title">
@@ -23,7 +23,7 @@
       </tr>
 
       <tr class="information">
-        <td colspan="2">
+        <td colspan="4">
           <table>
             <tr>
               <td>
@@ -43,45 +43,42 @@
       </tr>
 
       <tr class="heading">
-        <td>Payment Method</td>
-
-        <td>Check #</td>
+        <td colspan="2">Payment Method</td>
+        <td colspan="2">Check #</td>
       </tr>
 
       <tr class="details">
-        <td>Check</td>
-
-        <td>1000</td>
+        <td colspan="2">Check</td>
+        <td colspan="2">1000</td>
       </tr>
 
       <tr class="heading">
         <td>Item</td>
-
+        <td>quantity</td>
         <td>Price</td>
+        <td>total</td>
       </tr>
 
-      <tr class="item">
-        <td>Website design</td>
+      <tr class="item" v-for="item in items" :key="item.id">
+        <td>
+          <input v-model="item.description" />
+        </td>
 
-        <td>$300.00</td>
-      </tr>
+        <td>
+          $
+          <input type="number" v-model="item.price" />
+        </td>
 
-      <tr class="item">
-        <td>Hosting (3 months)</td>
-
-        <td>$75.00</td>
-      </tr>
-
-      <tr class="item last">
-        <td>Domain name (1 year)</td>
-
-        <td>$10.00</td>
+        <td>
+          <input type="number" v-model="item.quantity" />
+        </td>
+        <td>$ {{item.price * item.quantity | currency}}</td>
       </tr>
 
       <tr class="total">
-        <td></td>
+        <td colspan="2"></td>
 
-        <td>Total: $385.00</td>
+        <td colspan="2">Total: $385.00</td>
       </tr>
     </table>
   </div>
@@ -91,7 +88,9 @@
 export default {
   name: "InvoiceForm",
   data() {
-    items: [{ description: "Website Design", quantity: 1, price: 300 }];
+    return {
+      items: [{ id: 1, description: "Website Design", quantity: 1, price: 300 }]
+    };
   },
   computed: {
     total() {
