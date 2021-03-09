@@ -53,7 +53,7 @@
         <td>Quantity</td>
         <td>Price</td>
         <td>Total</td>
-        <td></td>
+        <td>#</td>
       </tr>
       <tr class="item" v-for="item in items" :key="item.id">
         <td>
