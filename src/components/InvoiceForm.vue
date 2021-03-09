@@ -2,7 +2,7 @@
   <div class="invoice-box">
     <table cellpadding="0" cellspacing="0">
       <tr class="top">
-        <td colspan="4">
+        <td colspan="5">
           <table>
             <tr>
               <td class="title">
@@ -22,7 +22,7 @@
         </td>
       </tr>
       <tr class="information">
-        <td colspan="4">
+        <td colspan="5">
           <table>
             <tr>
               <td>
@@ -41,18 +41,19 @@
         </td>
       </tr>
       <tr class="heading">
-        <td colspan="2">Payment Method</td>
-        <td colspan="2">Check #</td>
+        <td colspan="3">Payment Method</td>
+        <td colspan="3">Check #</td>
       </tr>
       <tr class="details">
-        <td colspan="2">Check</td>
-        <td colspan="2">1000</td>
+        <td colspan="3">Check</td>
+        <td colspan="3">1000</td>
       </tr>
       <tr class="heading">
         <td>Item</td>
         <td>Quantity</td>
         <td>Price</td>
         <td>Total</td>
+        <td></td>
       </tr>
       <tr class="item" v-for="item in items" :key="item.id">
         <td>
@@ -66,9 +67,10 @@
           <input type="number" v-model="item.quantity" />
         </td>
         <td>${{item.price * item.quantity | currency}}</td>
+        <td><button @click="deleteRow(item.id)">delete</button></td>
       </tr>
       <tr>
-        <td colspan="4">
+        <td colspan="5">
           <button class="btn-add-row" @click="addRow">Add Row</button>
         </td>
       </tr>
@@ -107,6 +109,11 @@ export default {
         quantity: 1,
         price: 0
       });
+    },
+    deleteRow(id) {
+      for (var i = 0; i < this.items.length; i++) {
+          this.items.splice(i, this.items[i].id == id ? 1 : 0)
+      }
     }
   },
   filters: {
