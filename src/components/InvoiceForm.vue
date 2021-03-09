@@ -58,13 +58,13 @@
       <tr class="item" v-for="item in items" :key="item.id">
         <td>
           <input v-model="item.description" />
+        </td>        
+        <td>
+          <input type="number" v-model="item.quantity" />
         </td>
         <td>
           $
           <input type="number" v-model="item.price" />
-        </td>
-        <td>
-          <input type="number" v-model="item.quantity" />
         </td>
         <td>${{item.price * item.quantity | currency}}</td>
         <td><button @click="deleteRow(item.id)">delete</button></td>
