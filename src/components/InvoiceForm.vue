@@ -111,9 +111,9 @@ export default {
       });
     },
     deleteRow(id) {
-      for (var i = 0; i < this.items.length; i++) {
-          this.items.splice(i, this.items[i].id == id ? 1 : 0)
-      }
+      this.items.splice(this.items.findIndex(item => {
+        return item.id === id
+      }), 1)
     }
   },
   filters: {
