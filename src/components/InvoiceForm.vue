@@ -111,9 +111,7 @@ export default {
       });
     },
     deleteRow(id) {
-      this.items.splice(this.items.findIndex(item => {
-        return item.id === id
-      }), 1)
+      this.items.splice(this.items.findIndex(item => item.id === id), 1)
     }
   },
   filters: {
